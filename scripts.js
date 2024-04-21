@@ -15,14 +15,13 @@ function getComputerChoice (){
 
     let randNum = Math.floor(Math.random() * 3) + 1;
 
-    if (randNum == 1){
-        return "rock";
-    }
-    else if (randNum == 2){
-        return "scissors";
-    }
-    else if (randNum == 3){
-        return "paper";
+    switch(randNum){
+        case 1:
+        return 'rock';
+        case 2:
+        return 'scissors';
+        case 3:
+        return 'paper';
     }
 }
 
@@ -36,7 +35,7 @@ function checkWinner(playerSelection, computerSelection){
         return "win" ;
     }
     else{
-            return  "lose";
+        return  "lose";
     }
 }
 function playRound(playerSelection, computerSelection){
@@ -47,7 +46,7 @@ if(result == "draw"){
    resultText.innerHTML = "It's a draw! Play again.";
 }
 else if (result == "win"){
-    ++playerWinTotal;
+    playerWinTotal++;
     playerScore.innerHTML = "Player Score: " + playerWinTotal;
     resultText.innerHTML = `You win! ${playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1)} beats ${computerSelection}.`;
     if (playerWinTotal == 5){
@@ -55,7 +54,7 @@ else if (result == "win"){
     };
 }
 else if (result == "lose"){
-    ++computerWinTotal;
+    computerWinTotal++;
     computerScore.innerHTML = "Computer Score: " + computerWinTotal;
     resultText.innerHTML = `You lose! ${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)} beats ${playerSelection}.`;
     if (computerWinTotal == 5){
@@ -67,24 +66,30 @@ else if (result == "lose"){
 btnRock.addEventListener('click', function() {
     let playerSelection = "rock";
     playerChoice.innerHTML = `You chose ${playerSelection}.`
+
     let computerSelection = getComputerChoice();
-   computerChoice.innerHTML = `Computer chose ${computerSelection}.`
+    computerChoice.innerHTML = `Computer chose ${computerSelection}.`
+
     playRound(playerSelection, computerSelection);
 });
 
 btnPaper.addEventListener('click', function() {
     let playerSelection = "paper";
     playerChoice.innerText = `You chose ${playerSelection}.`
+
     let computerSelection = getComputerChoice();
     computerChoice.innerHTML = `Computer chose ${computerSelection}.`
+
     playRound(playerSelection, computerSelection);
 });
 
 btnScissors.addEventListener('click', function () {
     let playerSelection = "scissors";
     playerChoice.innerText = `You chose ${playerSelection}.`
+
     let computerSelection = getComputerChoice();
     computerChoice.innerHTML = `Computer chose ${computerSelection}.`
+    
     playRound(playerSelection, computerSelection);
 });
 
